@@ -2,7 +2,7 @@ import 'package:flutter/gestures.dart';
 
 import 'package:flutter/material.dart';
 
-import '../../screens/register.dart';
+import '../../presentation/screens/register.dart';
 
 class LoginFooter extends StatelessWidget {
 

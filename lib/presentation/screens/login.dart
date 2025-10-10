@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '../controllers/login_controller.dart';
+import '../../controllers/login_controller.dart';
 
-import '../components/login/header.dart';
+import '../../components/login/header.dart';
 
-import '../components/login/inputs.dart';
+import '../../components/login/inputs.dart';
 
-import '../components/login/buttons.dart';
+import '../../components/login/buttons.dart';
 
-import '../components/login/footer.dart';
+import '../../components/login/footer.dart';
 
 class LoginPage extends StatefulWidget {
 

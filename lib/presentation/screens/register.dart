@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '../controllers/register_controller.dart';
+import '../../controllers/register_controller.dart';
 
-import '../components/register/header.dart';
+import '../../components/register/header.dart';
 
-import '../components/register/inputs.dart';
+import '../../components/register/inputs.dart';
 
-import '../components/register/buttons.dart';
+import '../../components/register/buttons.dart';
 
-import '../components/register/footer.dart';
+import '../../components/register/footer.dart';
 
 class Register extends StatefulWidget {
 

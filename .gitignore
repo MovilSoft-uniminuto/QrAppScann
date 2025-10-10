@@ -43,3 +43,10 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# CMake/NDK build artifacts
+android/.cxx/
+android/app/.cxx/
+
+# Local gradle and intermediates
+.gradle/

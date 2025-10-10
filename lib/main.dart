@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'themes/app_theme.dart';
+import 'presentation/themes/app_theme.dart';
 
-import 'screens/login.dart';
+import 'presentation/screens/login.dart';
 
-import 'screens/register.dart';
+import 'presentation/screens/register.dart';
 
 void main() => runApp(const MyEntrypoint());
 

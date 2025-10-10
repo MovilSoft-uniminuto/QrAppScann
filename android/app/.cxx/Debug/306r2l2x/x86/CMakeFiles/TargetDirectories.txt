@@ -1,2 +1,0 @@
-C:/Code/QrAppScann/android/app/.cxx/Debug/306r2l2x/x86/CMakeFiles/edit_cache.dir
-C:/Code/QrAppScann/android/app/.cxx/Debug/306r2l2x/x86/CMakeFiles/rebuild_cache.dir
