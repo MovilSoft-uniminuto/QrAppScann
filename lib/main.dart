@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
               onPressed: (){
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context)=> const Pagina1()),
+                  MaterialPageRoute(builder: (context)=> Pagina1()),
                   );
               },
               child: const Text('Ir a Pagina 1'),
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
               onPressed: (){
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context)=> const Pagina2()),
+                  MaterialPageRoute(builder: (context)=>  Pagina2()),
                   );
               },
               child: const Text('Ir a Pagina 2'),
