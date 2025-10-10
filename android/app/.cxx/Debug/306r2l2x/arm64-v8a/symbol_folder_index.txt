@@ -1,0 +1,1 @@
+C:\Code\QrAppScann\build\app\intermediates\cxx\Debug\306r2l2x\obj\arm64-v8a
