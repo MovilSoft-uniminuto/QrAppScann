@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application/views/pagina1.dart';
+import 'package:flutter_application/views/pagina2.dart';
 
 import 'presentation/themes/app_theme.dart';
 
