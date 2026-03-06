@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_app_scann/const/theme/theme.dart';
-import 'package:qr_app_scann/presentacion/providers/theme_provider.dart';
+import 'package:qr_app_scann/presentation/providers/theme_provider.dart';
 
 void main() {
   runApp(const MyApp());
