@@ -45,7 +45,7 @@ class SplashScreen extends StatelessWidget {
           Container(
             width: double.infinity,
             height: double.infinity,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.center, 
@@ -57,7 +57,7 @@ class SplashScreen extends StatelessWidget {
           Container(
             width: double.infinity,
             height: double.infinity,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -70,7 +70,7 @@ class SplashScreen extends StatelessWidget {
           Container(
             width: double.infinity,
             height: double.infinity,
-            decoration: const BoxDecoration(
+            decoration:  BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topRight,
                 end: Alignment.bottomLeft,
@@ -80,7 +80,7 @@ class SplashScreen extends StatelessWidget {
             ),
           ),
 
-          const Center(
+           Center(
             child: Text(
               'SA',
               style: TextStyle(
