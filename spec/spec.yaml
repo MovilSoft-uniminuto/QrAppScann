@@ -1,0 +1,405 @@
+openapi: 3.0.3
+info:
+  title: ScannerApp API
+  version: 1.0.0
+  x-logo:
+    url: /static/img/logo_uniminuto.png
+    backgroundColor: transparent
+    altText: ScannerApp Logo
+  description: |2
+
+    ScannerApp es una aplicación institucional desarrollada para la Corporación Universitaria Minuto de Dios, cuyo objetivo principal es gestionar el control de ingreso de los estudiantes a espacios específicos dentro del campus universitario, como la Biblioteca y el Gimnasio.
+
+    El sistema registra de manera precisa cada entrada realizada por los estudiantes, permitiendo a los administradores llevar un monitoreo detallado del uso de estas instalaciones. Esta trazabilidad facilita la generación de reportes, el análisis de patrones de asistencia y la optimización de recursos en función del uso real de los espacios.
+
+    Además, ScannerApp ha sido diseñado con una interfaz moderna, intuitiva y segura, que se adapta a los flujos de trabajo institucionales y promueve una gestión eficiente y automatizada de los accesos. Su implementación fortalece la organización interna, mejora la experiencia del estudiante y contribuye al cumplimiento de las políticas de control y seguridad establecidas por la universidad.
+  contact:
+    name: Equipo de Desarrollo ScannerApp
+    email: darwin.aveiga@uniminuto.edu.co
+    url: https://www.scannerapp.edu.co/soporte
+  license:
+    name: Licencia Institucional
+    url: https://www.scannerapp.edu.co/licencia
+paths:
+  /api/v1/estudiantes/:
+    get:
+      operationId: api_v1_estudiantes_list
+      description: Este endpoint devuelve todos los estudiantes actualmente registrados
+        en el sistema.
+      summary: Lista los estudiantes registrados
+      parameters:
+      - in: query
+        name: buscar
+        schema:
+          type: string
+        description: Filtro de búsqueda por nombre o código
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Estudiantes'
+              examples:
+                RespuestaDeEjemplo:
+                  value:
+                  - - id: 1
+                      nombre: Juan Pérez
+                      codigo: '12345'
+                  summary: Respuesta de ejemplo
+          description: ''
+    post:
+      operationId: api_v1_estudiantes_create
+      description: Este endpoint devuelve todos los estudiantes actualmente registrados
+        en el sistema.
+      summary: Lista los estudiantes registrados
+      parameters:
+      - in: query
+        name: buscar
+        schema:
+          type: string
+        description: Filtro de búsqueda por nombre o código
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EstudiantesRequest'
+            examples:
+              RespuestaDeEjemplo:
+                value:
+                - id: 1
+                  nombre: Juan Pérez
+                  codigo: '12345'
+                summary: Respuesta de ejemplo
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/EstudiantesRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/EstudiantesRequest'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Estudiantes'
+              examples:
+                RespuestaDeEjemplo:
+                  value:
+                  - - id: 1
+                      nombre: Juan Pérez
+                      codigo: '12345'
+                  summary: Respuesta de ejemplo
+          description: ''
+  /api/v1/estudiantes/{idestudiante}/:
+    get:
+      operationId: api_v1_estudiantes_retrieve
+      description: Este endpoint devuelve la información detallada de un estudiante
+        específico, dado su ID.
+      summary: Obtiene el detalle de un estudiante
+      parameters:
+      - in: path
+        name: idestudiante
+        schema:
+          type: integer
+          title: ID de Estudiante
+          description: Identificador único del estudiante.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Estudiantes'
+              examples:
+                RespuestaDeEjemplo:
+                  value:
+                    id: 1
+                    nombre: Juan Pérez
+                    codigo: '12345'
+                  summary: Respuesta de ejemplo
+          description: ''
+  /api/v1/ingreso/:
+    get:
+      operationId: api_v1_ingreso_list
+      description: Este endpoint devuelve todos los ingresos registrados en el sistema.
+      summary: Lista los ingresos registrados
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Ingreso'
+              examples:
+                RespuestaDeEjemplo:
+                  value:
+                  - - id: 1
+                      estudiante: 1
+                      fecha: '2025-05-02T12:00:00Z'
+                  summary: Respuesta de ejemplo
+          description: ''
+    post:
+      operationId: api_v1_ingreso_create
+      description: Este endpoint devuelve todos los ingresos registrados en el sistema.
+      summary: Lista los ingresos registrados
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IngresoRequest'
+            examples:
+              RespuestaDeEjemplo:
+                value:
+                - id: 1
+                  estudiante: 1
+                  fecha: '2025-05-02T12:00:00Z'
+                summary: Respuesta de ejemplo
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/IngresoRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/IngresoRequest'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Ingreso'
+              examples:
+                RespuestaDeEjemplo:
+                  value:
+                  - - id: 1
+                      estudiante: 1
+                      fecha: '2025-05-02T12:00:00Z'
+                  summary: Respuesta de ejemplo
+          description: ''
+  /api/v1/ingreso/{idingreso}/:
+    get:
+      operationId: api_v1_ingreso_retrieve
+      description: Este endpoint devuelve la información detallada de un ingreso específico,
+        dado su ID.
+      summary: Obtiene el detalle de un ingreso
+      parameters:
+      - in: path
+        name: idingreso
+        schema:
+          type: integer
+          title: ID de Ingreso
+          description: Identificador único del registro de ingreso.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ingreso'
+              examples:
+                RespuestaDeEjemplo:
+                  value:
+                    id: 1
+                    estudiante: 1
+                    fecha: '2025-05-02T12:00:00Z'
+                  summary: Respuesta de ejemplo
+          description: ''
+components:
+  schemas:
+    Estudiantes:
+      type: object
+      properties:
+        idestudiante:
+          type: integer
+          readOnly: true
+          title: ID de Estudiante
+          description: Identificador único del estudiante.
+        id_programa:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          title: ID de Programa
+          description: Identificador del programa académico al que pertenece el estudiante.
+        nombres:
+          type: string
+          title: Nombres completos
+          description: Nombres y apellidos del estudiante.
+          maxLength: 100
+        edad:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          description: Edad actual del estudiante.
+        codigo:
+          type: string
+          title: Código de estudiante
+          description: Código único asignado al estudiante por la universidad.
+          maxLength: 20
+        correo:
+          type: string
+          title: Correo electrónico
+          description: Correo electrónico institucional del estudiante.
+          maxLength: 100
+        semestre:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          title: Semestre académico
+          description: Semestre actual que cursa el estudiante.
+        contraseña:
+          type: string
+          description: Contraseña para acceso al sistema.
+          maxLength: 45
+      required:
+      - codigo
+      - contraseña
+      - correo
+      - edad
+      - id_programa
+      - idestudiante
+      - nombres
+      - semestre
+    EstudiantesRequest:
+      type: object
+      properties:
+        id_programa:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          title: ID de Programa
+          description: Identificador del programa académico al que pertenece el estudiante.
+        nombres:
+          type: string
+          minLength: 1
+          title: Nombres completos
+          description: Nombres y apellidos del estudiante.
+          maxLength: 100
+        edad:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          description: Edad actual del estudiante.
+        codigo:
+          type: string
+          minLength: 1
+          title: Código de estudiante
+          description: Código único asignado al estudiante por la universidad.
+          maxLength: 20
+        correo:
+          type: string
+          minLength: 1
+          title: Correo electrónico
+          description: Correo electrónico institucional del estudiante.
+          maxLength: 100
+        semestre:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          title: Semestre académico
+          description: Semestre actual que cursa el estudiante.
+        contraseña:
+          type: string
+          minLength: 1
+          description: Contraseña para acceso al sistema.
+          maxLength: 45
+      required:
+      - codigo
+      - contraseña
+      - correo
+      - edad
+      - id_programa
+      - nombres
+      - semestre
+    Ingreso:
+      type: object
+      properties:
+        idingreso:
+          type: integer
+          readOnly: true
+          title: ID de Ingreso
+          description: Identificador único del registro de ingreso.
+        fecha_ingreso:
+          type: string
+          format: date
+          title: Fecha de ingreso
+          description: Fecha en la que el estudiante ingresó.
+        hora_ingreso:
+          type: string
+          format: time
+          title: Hora de ingreso
+          description: Hora exacta en la que el estudiante ingresó.
+        idestudiante:
+          type: integer
+          title: Estudiante
+          description: Estudiante que realizó el ingreso.
+      required:
+      - fecha_ingreso
+      - hora_ingreso
+      - idestudiante
+      - idingreso
+    IngresoRequest:
+      type: object
+      properties:
+        fecha_ingreso:
+          type: string
+          format: date
+          title: Fecha de ingreso
+          description: Fecha en la que el estudiante ingresó.
+        hora_ingreso:
+          type: string
+          format: time
+          title: Hora de ingreso
+          description: Hora exacta en la que el estudiante ingresó.
+        idestudiante:
+          type: integer
+          title: Estudiante
+          description: Estudiante que realizó el ingreso.
+      required:
+      - fecha_ingreso
+      - hora_ingreso
+      - idestudiante
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
