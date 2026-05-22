@@ -1,57 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:qr_app_scann/features/login/providers/login_provider.dart';
+import 'package:qr_app_scann/shared/widgets/custom_text_field.dart';
 
-// Formulario de login con email y contraseña
-class LoginForm extends StatefulWidget {
+// Formulario de login que consume el LoginProvider para gestionar su estado
+class LoginForm extends StatelessWidget {
   const LoginForm({super.key});
 
   @override
-  State<LoginForm> createState() => _LoginFormState();
-}
-
-class _LoginFormState extends State<LoginForm> {
-  final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-  bool _obscurePassword = true;
-
-  @override
-  void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final loginProvider = context.watch<LoginProvider>();
+
     return Form(
-      key: _formKey,
+      key: loginProvider.formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          TextFormField(
-            controller: _emailController,
+          CustomTextField(
+            controller: loginProvider.emailController,
+            hintText: 'Correo institucional',
+            prefixIcon: Icons.mail_outline_rounded,
             keyboardType: TextInputType.emailAddress,
-            decoration: const InputDecoration(
-              hintText: 'Correo institucional',
-              prefixIcon: Icon(Icons.mail_outline_rounded),
-            ),
           ),
           const SizedBox(height: 16),
 
-          TextFormField(
-            controller: _passwordController,
-            obscureText: _obscurePassword,
-            decoration: InputDecoration(
-              hintText: 'Contraseña',
-              prefixIcon: const Icon(Icons.lock_outline_rounded),
-              suffixIcon: IconButton(
-                onPressed: () =>
-                    setState(() => _obscurePassword = !_obscurePassword),
-                icon: Icon(
-                  _obscurePassword
-                      ? Icons.visibility_off_outlined
-                      : Icons.visibility_outlined,
-                ),
+          CustomTextField(
+            controller: loginProvider.passwordController,
+            hintText: 'Contraseña',
+            prefixIcon: Icons.lock_outline_rounded,
+            obscureText: loginProvider.obscurePassword,
+            suffixIcon: IconButton(
+              onPressed: loginProvider.toggleObscurePassword,
+              icon: Icon(
+                loginProvider.obscurePassword
+                    ? Icons.visibility_off_outlined
+                    : Icons.visibility_outlined,
               ),
             ),
           ),
