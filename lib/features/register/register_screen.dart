@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:qr_app_scann/features/register/providers/register_provider.dart';
 import 'package:qr_app_scann/features/register/widgets/register_form.dart';
 import 'package:qr_app_scann/features/register/widgets/social_register_section.dart';
 import 'package:qr_app_scann/shared/widgets/theme_toggle_button.dart';
@@ -11,7 +13,9 @@ class RegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return ChangeNotifierProvider(
+      create: (_) => RegisterProvider(),
+      child: Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
         actions: const [
@@ -48,6 +52,7 @@ class RegisterScreen extends StatelessWidget {
             ],
           ),
         ),
+      ),
       ),
     );
   }
