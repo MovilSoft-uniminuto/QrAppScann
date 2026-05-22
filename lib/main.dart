@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:qr_app_scann/const/theme/theme.dart';
 import 'package:qr_app_scann/const/theme/theme_provider.dart';
 import 'package:qr_app_scann/features/login/login_screen.dart';
+import 'package:qr_app_scann/features/register/register_screen.dart';
 import 'package:qr_app_scann/features/welcome/welcome_screen.dart';
 
 void main() {
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
 
   static const String routeWelcome = '/';
   static const String routeLogin = '/login';
+  static const String routeRegister = '/register';
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +31,7 @@ class MyApp extends StatelessWidget {
           routes: {
             routeWelcome: (context) => const WelcomeScreen(),
             routeLogin: (context) => const LoginScreen(),
+            routeRegister: (context) => const RegisterScreen(),
           },
         );
       },
