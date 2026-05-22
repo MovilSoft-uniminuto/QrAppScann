@@ -1,79 +1,56 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:qr_app_scann/features/register/providers/register_provider.dart';
 import 'package:qr_app_scann/main.dart';
+import 'package:qr_app_scann/shared/widgets/custom_text_field.dart';
 
-// Formulario de registro con email, contraseña y confirmación
-class RegisterForm extends StatefulWidget {
+// Formulario de registro que consume el RegisterProvider para gestionar su estado
+class RegisterForm extends StatelessWidget {
   const RegisterForm({super.key});
 
   @override
-  State<RegisterForm> createState() => _RegisterFormState();
-}
-
-class _RegisterFormState extends State<RegisterForm> {
-  final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-  final _confirmPasswordController = TextEditingController();
-  bool _obscurePassword = true;
-  bool _obscureConfirm = true;
-
-  @override
-  void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    _confirmPasswordController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final registerProvider = context.watch<RegisterProvider>();
+
     return Form(
-      key: _formKey,
+      key: registerProvider.formKey,
       child: Column(
         children: [
-          TextFormField(
-            controller: _emailController,
+          CustomTextField(
+            controller: registerProvider.emailController,
+            hintText: 'Correo institucional',
+            prefixIcon: Icons.mail_outline_rounded,
             keyboardType: TextInputType.emailAddress,
-            decoration: const InputDecoration(
-              hintText: 'Correo institucional',
-              prefixIcon: Icon(Icons.mail_outline_rounded),
-            ),
           ),
           const SizedBox(height: 16),
 
-          TextFormField(
-            controller: _passwordController,
-            obscureText: _obscurePassword,
-            decoration: InputDecoration(
-              hintText: 'Contraseña',
-              prefixIcon: const Icon(Icons.lock_outline_rounded),
-              suffixIcon: IconButton(
-                onPressed: () =>
-                    setState(() => _obscurePassword = !_obscurePassword),
-                icon: Icon(
-                  _obscurePassword
-                      ? Icons.visibility_off_outlined
-                      : Icons.visibility_outlined,
-                ),
+          CustomTextField(
+            controller: registerProvider.passwordController,
+            hintText: 'Contraseña',
+            prefixIcon: Icons.lock_outline_rounded,
+            obscureText: registerProvider.obscurePassword,
+            suffixIcon: IconButton(
+              onPressed: registerProvider.toggleObscurePassword,
+              icon: Icon(
+                registerProvider.obscurePassword
+                    ? Icons.visibility_off_outlined
+                    : Icons.visibility_outlined,
               ),
             ),
           ),
           const SizedBox(height: 16),
 
-          TextFormField(
-            controller: _confirmPasswordController,
-            obscureText: _obscureConfirm,
-            decoration: InputDecoration(
-              hintText: 'Confirmar contraseña',
-              prefixIcon: const Icon(Icons.lock_outline_rounded),
-              suffixIcon: IconButton(
-                onPressed: () =>
-                    setState(() => _obscureConfirm = !_obscureConfirm),
-                icon: Icon(
-                  _obscureConfirm
-                      ? Icons.visibility_off_outlined
-                      : Icons.visibility_outlined,
-                ),
+          CustomTextField(
+            controller: registerProvider.confirmPasswordController,
+            hintText: 'Confirmar contraseña',
+            prefixIcon: Icons.lock_outline_rounded,
+            obscureText: registerProvider.obscureConfirm,
+            suffixIcon: IconButton(
+              onPressed: registerProvider.toggleObscureConfirm,
+              icon: Icon(
+                registerProvider.obscureConfirm
+                    ? Icons.visibility_off_outlined
+                    : Icons.visibility_outlined,
               ),
             ),
           ),
